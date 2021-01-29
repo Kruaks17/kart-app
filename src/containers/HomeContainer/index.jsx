@@ -5,6 +5,7 @@ import SiteNavigation  from '../../components/SiteNavigation';
 import Container  from '../../components/Container';
 import PageTitle from '../../components/PageTitle';
 import HomeContent from '../../components/HomeContent';
+import PageSkeleton from '../../components/PageSkeleton';
 
 function HomeContainer(){
 
@@ -16,9 +17,9 @@ function HomeContainer(){
             slug: process.env.BUCKET_SLUG,
             read_key:process.env.READ_KEY
         });
-        bucket.geObject({
+        bucket.getObject({
             slug: 'hjem',
-            props: 'slug, title, content'
+            props: ' title, content'
         })
             .then (data =>{
                 setPageData(data.object);
@@ -27,8 +28,12 @@ function HomeContainer(){
                 console.log(error);
             });
     },[]);
-
-
+    function renderSkeleton() {
+        return ( 
+            <PageSkeleton />
+        );
+    }
+    
     function renderPage(){
         return (
             <>
@@ -42,7 +47,7 @@ function HomeContainer(){
 }
     return(
         <>
-        {(pageData === null ) ? renderSekeleton() : renderPage()}
+        {(pageData === null ) ? renderSkeleton() : renderPage()}
         </>
 
     )

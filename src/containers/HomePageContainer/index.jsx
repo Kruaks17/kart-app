@@ -16,11 +16,11 @@ function HomePageContainer(){
             slug: process.env.BUCKET_SLUG,
             read_key:process.env.READ_KEY
         });
-        bucket.geObject({
-            slug: 'homepage',
+        bucket.getObject({
+            slug: 'react-development',
             limit: 5,
             props: 'slug, title, content',
-            sort: '-created_at'
+            
         })
             .then (data =>{
                 setPageData(data.object);
@@ -29,7 +29,11 @@ function HomePageContainer(){
                 console.log(error);
             });
     },[]);
-
+    function renderSkeleton() {
+        return(
+            <PageSkeleton />
+        )
+    }
 
     function renderPage(){
         return (
@@ -44,7 +48,7 @@ function HomePageContainer(){
 }
     return(
         <>
-        {(pageData === null ) ? renderSekeleton() : renderPage()}
+        {(pageData === null ) ? renderSkeleton() : renderPage()}
         </>
 
     )

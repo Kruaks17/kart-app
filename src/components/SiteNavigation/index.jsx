@@ -29,12 +29,13 @@ export const SiteNavigationBase = styled(Container)`
                 display:inline-block;
                 color:black;
                 text-decoration:none;
-                border-bottom:1px solid black;
+                border:none;
 
             }
             &:hover{
                 color:#92B9BD;
                 border-color:#92B9BD;
+                
             }
 `;
 
@@ -44,7 +45,7 @@ function SiteNavigation(){
         <SiteNavigationBase as="nav">
             <ul>
                 <li>
-                    <NavLink to="/">Hjem</NavLink>
+                    <NavLink to="/">Bryggerier</NavLink>
                 </li>
                 <li>
                     <NavLink to="/about">Om Oss</NavLink>

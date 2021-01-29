@@ -7,7 +7,7 @@ import PageTitle from '../../components/PageTitle';
 import Container from '../../components/Container';
 import PageSkeleton from '../../components/PageSkeleton';
 
-function AboutContainer(){
+function BryggerierContainer(){
     const [pageData, setPageData] = useState(null);
 
     useEffect(() =>{
@@ -19,7 +19,7 @@ function AboutContainer(){
         });
 
          bucket.getObject({
-            slug:'om-oss',
+            slug:'bryggerier',
             props:'slug,title, content'
         })
         then (data =>{
@@ -35,23 +35,33 @@ function AboutContainer(){
             <PageSkeleton />
         );
     }
-
+   
     function renderPage(){
-        return (
         <>
         <SiteNavigation />
-            <Container as="main">
-                <PageTitle>{pageData.title}</PageTitle>
-                <HomeContent dangerouslySetInnerHTML={{__html:pageData.content}} />
-            </Container>
-        </>
-        )
-    }
 
+            <Container as="main">
+                <PageTitle>Bryggerier i Oslo</PageTitle>
+                {pageData.object.map(item => {
+                    return (
+                        <PostLink 
+                        url={`/bryggerier/${item.slug}`}
+                        title={item.title}
+                        date={`01.29.2021`}
+                        key={item.slug}
+                        />
+                    );
+                })}
+            </Container>
+        
+        </>
+    }
     return (
         <>
-        {(pageData === null)? renderSkeleton() : renderPage()}
+
+        {(pageData === null) ? renderSkeleton() : renderPage()}
         </>
-)
-};
-export default AboutContainer;
+    )
+}
+
+export default BryggerierContainer;
