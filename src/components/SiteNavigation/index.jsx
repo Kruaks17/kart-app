@@ -45,10 +45,10 @@ function SiteNavigation(){
         <SiteNavigationBase as="nav">
             <ul>
                 <li>
-                    <NavLink to="/">Bryggerier</NavLink>
+                    <NavLink to="/bryggerier">Bryggerier</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/about">Om Oss</NavLink>
+                    <NavLink to="/om-oss">Om Oss</NavLink>
                 </li>
                 <li>
                     <NavLink to="/contact">Kontakt</NavLink>

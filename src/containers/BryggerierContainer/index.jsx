@@ -4,6 +4,7 @@ import Cosmic from 'cosmicjs';
 import SiteNavigation  from '../../components/SiteNavigation';
 import HomeContent from '../../components/HomeContent';
 import PageTitle from '../../components/PageTitle';
+import PostLink from '../../components/PostLink';
 import Container from '../../components/Container';
 import PageSkeleton from '../../components/PageSkeleton';
 
@@ -18,12 +19,16 @@ function BryggerierContainer(){
             read_key: process.env.READ_KEY
         });
 
-         bucket.getObject({
+         bucket.getObjects({
+            type: 'bryggerier',
             slug:'bryggerier',
-            props:'slug,title, content'
+            limit:9,
+            props:'slug,title,content',
+            sort: '-created_at'
         })
-        then (data =>{
-            setPageData(data.getObject);
+        .then (data =>{
+            setPageData(data);
+            console.log(data);
         })
         .catch (error =>{
             console.log(error);
@@ -35,14 +40,13 @@ function BryggerierContainer(){
             <PageSkeleton />
         );
     }
-   
+
     function renderPage(){
         <>
         <SiteNavigation />
-
             <Container as="main">
                 <PageTitle>Bryggerier i Oslo</PageTitle>
-                {pageData.object.map(item => {
+                  {pageData.objects.map(item => {
                     return (
                         <PostLink 
                         url={`/bryggerier/${item.slug}`}
@@ -51,7 +55,7 @@ function BryggerierContainer(){
                         key={item.slug}
                         />
                     );
-                })}
+                })} 
             </Container>
         
         </>

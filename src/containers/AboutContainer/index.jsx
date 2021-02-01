@@ -20,9 +20,9 @@ function AboutContainer(){
 
          bucket.getObject({
             slug:'om-oss',
-            props:'slug,title, content'
+            props:'slug,title,content'
         })
-        then (data =>{
+        .then(data =>{
             setPageData(data.getObject);
         })
         .catch (error =>{

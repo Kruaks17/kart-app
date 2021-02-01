@@ -19,7 +19,7 @@ function HomeContainer(){
         });
         bucket.getObject({
             slug: 'hjem',
-            props: ' title, content'
+            props: 'title,slug,content'
         })
             .then (data =>{
                 setPageData(data.object);
@@ -39,9 +39,10 @@ function HomeContainer(){
             <>
                 <SiteNavigation />
                 <Container as="main">
-                    <PageTitle>{pageData.title}</PageTitle>
+                    <PageTitle>{pageData.title}</PageTitle >
                     <HomeContent dangerouslySetInnerHTML={{__html: pageData.content}} />
                 </Container>
+                
             </>
         )
 }
@@ -53,4 +54,7 @@ function HomeContainer(){
     )
 
 };
+
+
+
 export default HomeContainer;

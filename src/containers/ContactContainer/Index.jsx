@@ -40,7 +40,7 @@ function ContactContainer(){
             slug:'kontakt',
             props:'title, content'
         })
-        then (data =>{
+        .then (data =>{
             setPageData(data.getObject);
         })
         .catch (error =>{
@@ -71,7 +71,6 @@ function ContactContainer(){
     function renderPage(){
         <>
         <SiteNavigation />
-
             <Container as="main">
                 <PageTitle>{pageData.title}</PageTitle>
                 <HomeContent dangerouslySetInnerHTML={{__html:pageData.content}} />

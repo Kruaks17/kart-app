@@ -23,15 +23,14 @@ function App() {
      <GlobalStyle/>
      <Router>
         <Switch> 
-          <Route path="/homepage" component={HomePageContainer}/>
+          <Route path="/homepage" component={HomePageContainer}/> 
           <Route path="/om-oss" component={AboutContainer} />
-          <Route path="/kontakt/:slug" component={ContactContainer} />
+          <Route path="/kontakt" component={ContactContainer} />
           <Route path="/bryggerier" component={BryggerierContainer} />
-          
           <Route path="/" component={HomeContainer} exact/> 
         </Switch>
-
      </Router>
+     
     </>
   );
 }
