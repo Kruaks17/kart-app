@@ -42,23 +42,25 @@ function BryggerierContainer(){
     }
 
     function renderPage(){
+        return (
         <>
         <SiteNavigation />
             <Container as="main">
                 <PageTitle>Bryggerier i Oslo</PageTitle>
                   {pageData.objects.map(item => {
-                    return (
-                        <PostLink 
+                    return ( 
+                        <PostLink
                         url={`/bryggerier/${item.slug}`}
                         title={item.title}
+                        image={item.image}
                         date={`01.29.2021`}
                         key={item.slug}
                         />
                     );
                 })} 
             </Container>
-        
         </>
+        )
     }
     return (
         <>

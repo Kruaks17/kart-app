@@ -22,7 +22,11 @@ const HomeContent = styled.article `
         justify-content:center;
         align-items:center;
     }
-    
+    h1{
+        display: block;
+        justify-content:center;
+        align-items:center;
+    }
 `;
 
 export default HomeContent;

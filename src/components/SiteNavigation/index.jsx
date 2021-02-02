@@ -12,13 +12,23 @@ export const SiteNavigationBase = styled(Container)`
 
         padding:5px;
 
+        background-color:black;
+
+        width:100%;
+
+        border-radius: 50px;
+
+        margin-bottom: 30px;
+
         ul {
             list-style:none;
             margin:4px;
             padding:0;
+            background-color:black;
         }
             li{
                 display:inline-block;
+                background-color:black;
             }
             
             &:not(:last-child){
@@ -26,11 +36,20 @@ export const SiteNavigationBase = styled(Container)`
 
             }
             a{
-                display:inline-block;
-                color:black;
-                text-decoration:none;
-                border:none;
+                font-size:1rem;
+                font-weight:bold;
+                font-style: normal;
 
+                display:inline-block;
+                
+                color:#e8eddf;
+                
+                text-decoration:none;
+
+                
+                
+                border:none;
+                background-color:black;
             }
             &:hover{
                 color:#92B9BD;
@@ -43,16 +62,19 @@ function SiteNavigation(){
 
     return(
         <SiteNavigationBase as="nav">
+            
             <ul>
+                <li>
+                    <NavLink to="/">Hjem</NavLink>
+                </li>
                 <li>
                     <NavLink to="/bryggerier">Bryggerier</NavLink>
                 </li>
                 <li>
                     <NavLink to="/om-oss">Om Oss</NavLink>
                 </li>
-                <li>
-                    <NavLink to="/contact">Kontakt</NavLink>
-                </li>
+                
+               
             </ul>
         </SiteNavigationBase>
 
