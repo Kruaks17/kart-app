@@ -17,7 +17,8 @@ const PageSkeleton = styled(Container)`
 
     height: 500px;
     border-radius: 1rem; 
-    animation: ${pulseAnimation} 0.5s linear infinite;
+    animation: ${pulseAnimation} 1s linear infinite;
+    animation-timing-function: ease-in-out;
 
 `;
 

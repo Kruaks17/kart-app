@@ -9,9 +9,10 @@ export const PostLinkBase = styled.a`
 
 
     &:hover{
-        border-color: #92B9BD;
-    }
+        color: #92B9BD;
+        font-size:1.2rem;
 
+    }
 `;
 
 export const PostLinkTitle = styled.span`
@@ -25,7 +26,7 @@ export const PostLinkTitle = styled.span`
 export const PostLinkImage = styled.span`
 
     display:block;
-    width: 50vw;
+    width: 100%;
 
 
 `;

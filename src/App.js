@@ -7,6 +7,7 @@ import HomeContainer from './containers/HomeContainer';
 import AboutContainer from './containers/AboutContainer';
 import ContactContainer from './containers/ContactContainer';
 import BryggerierContainer from './containers/BryggerierContainer';
+import PostContainer from './containers/PostContainer';
 
 
 import {
@@ -17,7 +18,7 @@ Route
 
 import HomePageContainer from './containers/HomePageContainer';
 
-function App() {
+function App(){
   return (
     <>
      <GlobalStyle/>
@@ -26,11 +27,11 @@ function App() {
           <Route path="/homepage" component={HomePageContainer}/> 
           <Route path="/om-oss" component={AboutContainer} />
           <Route path="/kontakt" component={ContactContainer} />
+          <Route path="/bryggerier/:slug" component={PostContainer} />
           <Route path="/bryggerier" component={BryggerierContainer} />
           <Route path="/" component={HomeContainer} exact/> 
         </Switch>
      </Router>
-     
     </>
   );
 }

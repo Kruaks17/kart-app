@@ -18,12 +18,12 @@ function AboutContainer(){
             read_key: process.env.READ_KEY
         });
 
-         bucket.getObjects({
+         bucket.getObject({
             slug:'om-oss',
             props:'slug,title,content'
         })
         .then(data =>{
-            setPageData(data.objects); 
+            setPageData(data.object); 
         })
         .catch (error =>{
             console.log(error);

@@ -20,7 +20,4 @@ useEffect(() =>{
 };
 
 
-
-
-
 export default Mapbox;
