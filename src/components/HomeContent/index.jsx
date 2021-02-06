@@ -6,15 +6,18 @@ const HomeContent = styled.article `
 
        max-width: 100%;
        max-height:100%;
-
-       display: block;
-        justify-content:center;
-        align-items:center; 
+       
+    
     }
     ul{
         list-style: none;
         border: 1px solid black;
         padding:1rem;
+
+        display:block;
+        justify-content:center;
+        align-items:center;
+
     }
     p:empty {
         display: none;
@@ -22,17 +25,17 @@ const HomeContent = styled.article `
     article{
         font-family: 'ff-dagny-web-pro', sans-serif;;
         color: black;
-
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        justify-content:center;
-        align-items:center;
+    }
+    article img{
+        box-sizing: border-box;
     }
     h1{
         font-family:'franklin-gothic-atf', sans-serif; ;
         display: block;
         justify-content:center;
         align-items:center;
+
+        
     }
 `;
 

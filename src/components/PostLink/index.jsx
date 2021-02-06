@@ -23,10 +23,10 @@ export const PostLinkTitle = styled.span`
 
     padding:5px;
 `;
-export const PostLinkImage = styled.span`
+export const PostLinkImage = styled.span` 
 
-    display:block;
-    width: 100%;
+box-sizing: border-box;
+width:100%;
 
 
 `;

@@ -10,6 +10,7 @@ import BryggerierContainer from './containers/BryggerierContainer';
 import PostContainer from './containers/PostContainer';
 
 
+
 import {
 BrowserRouter as Router,
 Switch,
@@ -26,12 +27,13 @@ function App(){
         <Switch> 
           <Route path="/homepage" component={HomePageContainer}/> 
           <Route path="/om-oss" component={AboutContainer} />
-          <Route path="/kontakt" component={ContactContainer} />
+          <Route path="/kontakt" component={ContactContainer}/>
           <Route path="/bryggerier/:slug" component={PostContainer} />
           <Route path="/bryggerier" component={BryggerierContainer} />
           <Route path="/" component={HomeContainer} exact/> 
         </Switch>
      </Router>
+     
     </>
   );
 }

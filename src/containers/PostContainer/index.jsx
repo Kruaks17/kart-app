@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import Cosmic from 'cosmicjs';
+import Mapbox from 'mapbox-gl';
 
 import SiteNavigation  from '../../components/SiteNavigation';
 import Container from '../../components/Container';
@@ -7,9 +8,16 @@ import PageTitle from '../../components/PageTitle';
 import HomeContent from '../../components/HomeContent';
 import PageSkeleton from '../../components/PageSkeleton';
 
+
+
+
+
 function PostContainer({match}){
+    
+
     const [pageData, setPageData] = useState(null);
 
+    
     useEffect(() =>{
         const client = new Cosmic();
         const bucket = client.bucket({
@@ -21,7 +29,7 @@ function PostContainer({match}){
             type: 'article',
             limit:9,
             slug:match.params.slug,
-            props:'slug,title,content,metafields',
+            props:'slug,title,content,metadata',
             sort: '-created_at'
         })
         .then (data =>{
@@ -32,7 +40,12 @@ function PostContainer({match}){
             console.log(error);
         });
 
+           
+
+    
     }, [])
+
+    
 
     function renderSkeleton(){
         return(
@@ -47,10 +60,14 @@ function PostContainer({match}){
             <Container as="main">
                 <PageTitle>{pageData.title}</PageTitle>
                 <HomeContent dangerouslySetInnerHTML={{__html:pageData.content}}   /> 
+                
             </Container>
         </>
+        
         )
-    }
+    };
+    
+
 
     return(
         <>

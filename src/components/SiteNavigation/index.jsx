@@ -10,7 +10,7 @@ export const SiteNavigationBase = styled(Container)`
         justify-content:center;
         align-items:center;
 
-        padding:5px;
+        padding:3px;
 
         background-color:black;
 

@@ -1,5 +1,7 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState, useEffect,useRef} from 'react';
 import Cosmic from 'cosmicjs';
+import Mapbox from 'mapbox-gl';
+
 
 import SiteNavigation  from '../../components/SiteNavigation';
 import Container  from '../../components/Container';
@@ -7,7 +9,11 @@ import PageTitle from '../../components/PageTitle';
 import HomeContent from '../../components/HomeContent';
 import PageSkeleton from '../../components/PageSkeleton';
 
+
+
 function HomeContainer(){
+
+    
 
     const [pageData, setPageData] = useState(null);
 
@@ -19,28 +25,34 @@ function HomeContainer(){
         });
         bucket.getObject({
             slug: 'hjem',
-            props: 'title,slug,content'
+            props: 'title,slug,content,metadata'
         })
             .then (data =>{
-                setPageData(data.object);
+                setPageData(data.object)
+                console.log(data);
             })
             .catch (error =>{
                 console.log(error);
             });
     },[]);
+
+    
+
     function renderSkeleton() {
         return ( 
             <PageSkeleton />
         );
-    }
+    }   
     
     function renderPage(){
         return (
-            <>
+            <>  
+                
                 <SiteNavigation />
                 <Container as="main">
                     <PageTitle>{pageData.title}</PageTitle >
                     <HomeContent dangerouslySetInnerHTML={{__html: pageData.content}} />
+                    
                 </Container>
                 
             </>

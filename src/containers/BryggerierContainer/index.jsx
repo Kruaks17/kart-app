@@ -1,14 +1,21 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect,useRef} from 'react';
 import Cosmic from 'cosmicjs';
+import Mapbox from 'mapbox-gl';
 
 import SiteNavigation  from '../../components/SiteNavigation';
-import HomeContent from '../../components/HomeContent';
 import PageTitle from '../../components/PageTitle';
 import PostLink from '../../components/PostLink';
 import Container from '../../components/Container';
 import PageSkeleton from '../../components/PageSkeleton';
 
+    let map= null;
+    let marker= null;
+
 function BryggerierContainer(){
+    
+    const mapElement= useRef(null);
+    Mapbox.accessToken= process.env.MAPBOX_API_KEY;
+
     const [pageData, setPageData] = useState(null);
 
     useEffect(() =>{
@@ -23,7 +30,7 @@ function BryggerierContainer(){
             type: 'bryggerier',
             slug:'bryggerier',
             limit:9,
-            props:'slug,title,content',
+            props:'slug,title,content,metadata',
             sort: '-created_at'
         })
         .then (data =>{
@@ -33,7 +40,31 @@ function BryggerierContainer(){
         .catch (error =>{
             console.log(error);
         });
+        
     }, []);
+
+  useEffect(() =>{
+        if (pageData !== null){ 
+            map = new Mapbox.Map({
+                container: mapElement.current,
+                style:'mapbox://styles/mapbox/streets-v11',
+                center:[10.751924829843674,59.91412969508033],
+                zoom:10
+            })
+            .on('load', () =>{
+                pageData.objects.map(item =>{
+                    let marker = new Mapbox.Marker({
+                        type: 'Point',
+                        draggable: false,
+                        anchor: 'bottom',  
+                    })
+                    .setLngLat(item.metadata.coordinates)
+                    .addTo(map);
+                })
+            })
+            
+        }
+      },[pageData]);
 
     function renderSkeleton() {
         return ( 
@@ -47,17 +78,20 @@ function BryggerierContainer(){
         <SiteNavigation />
             <Container as="main">
                 <PageTitle>Bryggerier i Oslo</PageTitle>
+                <div style={{height:'500px'}} ref={mapElement} ></div>  
+                
                   {pageData.objects.map(item => {
                     return ( 
-                        <PostLink
+                        < PostLink
                         url={`/bryggerier/${item.slug}`}
                         title={item.title}
                         image={item.image}
                         date={`01.29.2021`}
                         key={item.slug}
                         />
-                    );
-                })} 
+                    )
+                })}
+                
             </Container>
         </>
         )
