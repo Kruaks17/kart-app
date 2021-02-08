@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Cosmic from 'cosmicjs';
 
+
 import SiteNavigation  from '../../components/SiteNavigation';
 import HomeContent from '../../components/HomeContent';
 import PageTitle from '../../components/PageTitle';
@@ -28,7 +29,8 @@ function AboutContainer(){
         .catch (error =>{
             console.log(error);
         });
-    }, []);
+    }, [])
+    
 
     function renderSkeleton() {
         return ( 
