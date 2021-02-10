@@ -82,7 +82,7 @@ function BryggerierContainer(){
         }
       },[pageData]);
 
-      
+
     function renderSkeleton() {
         return ( 
             <PageSkeleton />
@@ -95,8 +95,8 @@ function BryggerierContainer(){
         <SiteNavigation />
             <Container as="main">
                 <PageTitle>Bryggerier i Oslo</PageTitle>
-                <p className="info">Her kan sjekke ut hvor bryggeribarene ligger i Oslo, <br></br>
-                og få litt informasjon om stedene.</p>
+                <p className="info">Her kan sjekke ut hvor bryggeribarene 
+                ligger i Oslo,<br></br>og få litt informasjon om stedene.</p>
                 <div style={{height:'500px'}} ref={mapElement} ></div>   
             </Container>
         <footer> </footer>
