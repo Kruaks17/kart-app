@@ -82,11 +82,7 @@ function BryggerierContainer(){
         }
       },[pageData]);
 
-
-    
-
-
-
+      
     function renderSkeleton() {
         return ( 
             <PageSkeleton />
