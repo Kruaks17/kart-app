@@ -33,12 +33,27 @@ const GlobalStyle = createGlobalStyle `
         font-size:12px;
         font-family: 'ff-dagny-web-pro', sans-serif;
     }
-    .plot-container{
+    .plotChart{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        margin-top: 30px;
         box-sizing: border-box;
     }
     .popup img {
         width:50% ;
     }
+    .info{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+
+        text-align:center;
+    }
+   
+
+    
+
 `;
 
 export default GlobalStyle;

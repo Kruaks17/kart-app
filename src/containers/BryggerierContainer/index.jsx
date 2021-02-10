@@ -3,6 +3,7 @@ import Cosmic from 'cosmicjs';
 import Mapbox from 'mapbox-gl';
 
 
+
 import SiteNavigation  from '../../components/SiteNavigation';
 import PageTitle from '../../components/PageTitle';
 import PostLink from '../../components/PostLink';
@@ -20,6 +21,7 @@ function BryggerierContainer(){
 
     const [pageData, setPageData] = useState(null);
 
+    //Henter inn Cosmic data, sluger og metadata
     useEffect(() =>{
 
         const client = new Cosmic();
@@ -29,7 +31,7 @@ function BryggerierContainer(){
         });
 
          bucket.getObjects({
-            type: 'bryggerier',
+            type:'bryggerier',
             slug:'bryggerier',
             limit:9,
             props:'slug,title,content,metadata',
@@ -44,7 +46,7 @@ function BryggerierContainer(){
         });
         
     }, []);
-
+  // Mapbox
   useEffect(() =>{
         if (pageData !== null){ 
             map = new Mapbox.Map({
@@ -53,7 +55,8 @@ function BryggerierContainer(){
                 center:[10.741882324218748,59.913557717561645],
                 zoom:10.5
             })
-            .on('load', () =>{
+            //Mapbox marker 
+            .on('load',  () =>{
                 pageData.objects.map(item =>{
                     let marker = new Mapbox.Marker({
                         type: 'Point',
@@ -61,23 +64,26 @@ function BryggerierContainer(){
                         color:'black',
                     })
                     .setLngLat(item.metadata.coordinates)
+                    // Popup i mapbox
                     .setPopup(new Mapbox.Popup({
                         cursor:'pointer'
                     })
                     .setHTML(`
-                      <div class="popup">
+                      <div class="popup"style:{{heigth:300px}}>
                       <h2>${item.title}</h2>
                       <p>${item.metadata.pop_text}</p>
-                      <a style={{cursor:"point"}} href="/bryggerier/${item.slug}">Les mer om bryggeri</a>
+                      <a style={{cursor:"point",text-decoration:"none"}} 
+                      href="/bryggerier/${item.slug}">Les mer om stedet</a>
                       </div>
                       `))
                     .addTo(map);
                 })
-            })
-            
+            })    
         }
-
       },[pageData]);
+
+
+    
 
 
 
@@ -93,22 +99,11 @@ function BryggerierContainer(){
         <SiteNavigation />
             <Container as="main">
                 <PageTitle>Bryggerier i Oslo</PageTitle>
-                
-                <div style={{height:'500px'}} ref={mapElement} ></div>  
-                
-                  {/*pageData.objects.map(item => {
-                    return( 
-                        < PostLink
-                        url={`/bryggerier/${item.slug}`}
-                        title={item.title}
-                        image={item.image}
-                        date={`01.29.2021`}
-                        key={item.slug}
-                        />
-                    )
-                })*/}
-                
+                <p className="info">Her kan sjekke ut hvor bryggeribarene ligger i Oslo, <br></br>
+                og få litt informasjon om stedene.</p>
+                <div style={{height:'500px'}} ref={mapElement} ></div>   
             </Container>
+        <footer> </footer>
         </>
         )
     }
