@@ -21,7 +21,7 @@ function BryggerierContainer(){
 
     const [pageData, setPageData] = useState(null);
 
-    //Henter inn Cosmic data, sluger og metadata
+    //Henter inn Cosmic data, slug og metadata
     useEffect(() =>{
 
         const client = new Cosmic();
@@ -88,7 +88,7 @@ function BryggerierContainer(){
             <PageSkeleton />
         );
     }
-
+    // innhold på siden
     function renderPage(){
         return (
         <>
@@ -99,7 +99,6 @@ function BryggerierContainer(){
                 ligger i Oslo,<br></br>og få litt informasjon om stedene.</p>
                 <div style={{height:'500px'}} ref={mapElement} ></div>   
             </Container>
-        <footer> </footer>
         </>
         )
     }
