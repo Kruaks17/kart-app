@@ -1,9 +1,6 @@
 import React, {useState, useEffect,useRef} from 'react';
 import Cosmic from 'cosmicjs';
 import Mapbox from 'mapbox-gl';
-
-
-
 import SiteNavigation  from '../../components/SiteNavigation';
 import PageTitle from '../../components/PageTitle';
 import PostLink from '../../components/PostLink';
